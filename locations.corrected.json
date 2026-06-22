@@ -355,12 +355,40 @@
     "name_en": "Domain of the Lionfish King",
     "region": "Отмель",
     "type": "подводные владения / опасная зона",
-    "x": 1016,
-    "y": 1780,
+    "x": 1033,
+    "y": 1689,
     "description": "",
     "mapNumber": 28,
-    "imageX": 1016,
-    "imageY": 3210,
-    "alignment": "Restored to original World Anvil extracted marker coordinates."
+    "imageX": 1033,
+    "imageY": 3301,
+    "alignment": "Corrected to the visible numbered circle center on the source map."
+  },
+  {
+    "name": "Арборский Карниз",
+    "name_en": "",
+    "region": "Гора Арбора",
+    "type": "Локация",
+    "x": 3634,
+    "y": 978,
+    "description": "",
+    "mapNumber": 29,
+    "imageX": 3634,
+    "imageY": 4012,
+    "alignment": "Witch",
+    "color": ""
+  },
+  {
+    "name": "Деревня Очиба",
+    "name_en": "",
+    "region": "Тихая Заводь",
+    "type": "Поселение",
+    "x": 4814,
+    "y": 2944,
+    "description": "",
+    "mapNumber": 30,
+    "imageX": 4814,
+    "imageY": 2046,
+    "alignment": "Witch",
+    "color": ""
   }
 ]
