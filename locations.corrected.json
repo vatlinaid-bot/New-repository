@@ -5,11 +5,11 @@
     "region": "Дар Суритаси",
     "type": "ложа / фракционная база",
     "x": 2933,
-    "y": 581,
+    "y": 4409,
     "description": "",
     "mapNumber": 1,
     "imageX": 2933,
-    "imageY": 4409,
+    "imageY": 581,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -18,11 +18,11 @@
     "region": "Дар Суритаси",
     "type": "деревня",
     "x": 2599,
-    "y": 3258,
+    "y": 1732,
     "description": "",
     "mapNumber": 2,
     "imageX": 2599,
-    "imageY": 1732,
+    "imageY": 3258,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -31,11 +31,11 @@
     "region": "Дар Суритаси",
     "type": "деревня",
     "x": 2487,
-    "y": 2415,
+    "y": 2575,
     "description": "",
     "mapNumber": 3,
     "imageX": 2487,
-    "imageY": 2575,
+    "imageY": 2415,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -44,11 +44,11 @@
     "region": "Дар Суритаси",
     "type": "храм / руины",
     "x": 3001,
-    "y": 1296,
+    "y": 3694,
     "description": "",
     "mapNumber": 4,
     "imageX": 3001,
-    "imageY": 3694,
+    "imageY": 1296,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -57,11 +57,11 @@
     "region": "Дар Суритаси",
     "type": "прибрежный городок / берег",
     "x": 1807,
-    "y": 1448,
+    "y": 3542,
     "description": "",
     "mapNumber": 5,
     "imageX": 1807,
-    "imageY": 3542,
+    "imageY": 1448,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -70,11 +70,11 @@
     "region": "Дар Суритаси",
     "type": "город духов / поселение",
     "x": 2511,
-    "y": 3544,
+    "y": 1446,
     "description": "",
     "mapNumber": 6,
     "imageX": 2511,
-    "imageY": 1446,
+    "imageY": 3544,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -83,11 +83,11 @@
     "region": "Дар Суритаси",
     "type": "школа мечников",
     "x": 1375,
-    "y": 3488,
+    "y": 1502,
     "description": "",
     "mapNumber": 7,
     "imageX": 1375,
-    "imageY": 1502,
+    "imageY": 3488,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -96,11 +96,11 @@
     "region": "Дар Суритаси",
     "type": "город / транспортный узел",
     "x": 3124,
-    "y": 655,
+    "y": 4335,
     "description": "",
     "mapNumber": 8,
     "imageX": 3124,
-    "imageY": 4335,
+    "imageY": 655,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -109,11 +109,11 @@
     "region": "Штормовые Поля",
     "type": "ковен / опасная зона",
     "x": 3985,
-    "y": 1860,
+    "y": 3130,
     "description": "",
     "mapNumber": 9,
     "imageX": 3985,
-    "imageY": 3130,
+    "imageY": 1860,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -122,11 +122,11 @@
     "region": "Штормовые Поля",
     "type": "лес / опасная зона",
     "x": 3564,
-    "y": 2395,
+    "y": 2595,
     "description": "",
     "mapNumber": 10,
     "imageX": 3564,
-    "imageY": 2595,
+    "imageY": 2395,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -135,11 +135,11 @@
     "region": "Прибрежное Нагорье",
     "type": "штаб / организация",
     "x": 5093,
-    "y": 1004,
+    "y": 3986,
     "description": "",
     "mapNumber": 11,
     "imageX": 5093,
-    "imageY": 3986,
+    "imageY": 1004,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -148,11 +148,11 @@
     "region": "Прибрежное Нагорье",
     "type": "город / водопад",
     "x": 4607,
-    "y": 1626,
+    "y": 3364,
     "description": "",
     "mapNumber": 12,
     "imageX": 4607,
-    "imageY": 3364,
+    "imageY": 1626,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -161,11 +161,11 @@
     "region": "Прибрежное Нагорье",
     "type": "аэродром / руины",
     "x": 5041,
-    "y": 1794,
+    "y": 3196,
     "description": "",
     "mapNumber": 13,
     "imageX": 5041,
-    "imageY": 3196,
+    "imageY": 1794,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -174,11 +174,11 @@
     "region": "Тихая Заводь",
     "type": "побережье / Порча",
     "x": 5888,
-    "y": 1652,
+    "y": 3338,
     "description": "",
     "mapNumber": 14,
     "imageX": 5888,
-    "imageY": 3338,
+    "imageY": 1652,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -187,11 +187,11 @@
     "region": "Тихая Заводь",
     "type": "магазин / заведение",
     "x": 5000,
-    "y": 2992,
+    "y": 1998,
     "description": "",
     "mapNumber": 15,
     "imageX": 5000,
-    "imageY": 1998,
+    "imageY": 2992,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -200,11 +200,11 @@
     "region": "Тихая Заводь",
     "type": "раменная / заведение",
     "x": 5016,
-    "y": 2467,
+    "y": 2523,
     "description": "",
     "mapNumber": 16,
     "imageX": 5016,
-    "imageY": 2523,
+    "imageY": 2467,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -213,11 +213,11 @@
     "region": "Тихая Заводь",
     "type": "деревня",
     "x": 6264,
-    "y": 3159,
+    "y": 1831,
     "description": "",
     "mapNumber": 17,
     "imageX": 6264,
-    "imageY": 1831,
+    "imageY": 3159,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -226,11 +226,11 @@
     "region": "Тихая Заводь",
     "type": "поселение / локация",
     "x": 4431,
-    "y": 2713,
+    "y": 2277,
     "description": "",
     "mapNumber": 18,
     "imageX": 4431,
-    "imageY": 2277,
+    "imageY": 2713,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -239,11 +239,11 @@
     "region": "Тихая Заводь",
     "type": "школа мечников",
     "x": 5282,
-    "y": 3381,
+    "y": 1609,
     "description": "",
     "mapNumber": 19,
     "imageX": 5282,
-    "imageY": 1609,
+    "imageY": 3381,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -252,11 +252,11 @@
     "region": "Гора Арбора",
     "type": "лестницы / горная тропа",
     "x": 3387,
-    "y": 3545,
+    "y": 1445,
     "description": "",
     "mapNumber": 20,
     "imageX": 3387,
-    "imageY": 1445,
+    "imageY": 3545,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -265,11 +265,11 @@
     "region": "Гора Арбора",
     "type": "природная локация",
     "x": 3596,
-    "y": 4259,
+    "y": 731,
     "description": "",
     "mapNumber": 21,
     "imageX": 3596,
-    "imageY": 731,
+    "imageY": 4259,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -278,11 +278,11 @@
     "region": "Гора Арбора",
     "type": "промышленная локация",
     "x": 4100,
-    "y": 3752,
+    "y": 1238,
     "description": "",
     "mapNumber": 22,
     "imageX": 4100,
-    "imageY": 1238,
+    "imageY": 3752,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -291,11 +291,11 @@
     "region": "Гора Арбора",
     "type": "школа мечников",
     "x": 3884,
-    "y": 3908,
+    "y": 1082,
     "description": "",
     "mapNumber": 23,
     "imageX": 3884,
-    "imageY": 1082,
+    "imageY": 3908,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -304,11 +304,11 @@
     "region": "Земли Горячей Воды",
     "type": "чайный дом / заведение",
     "x": 4464,
-    "y": 4113,
+    "y": 877,
     "description": "",
     "mapNumber": 24,
     "imageX": 4464,
-    "imageY": 877,
+    "imageY": 4113,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -317,11 +317,11 @@
     "region": "Земли Горячей Воды",
     "type": "ложа / фракционная база",
     "x": 2568,
-    "y": 4236,
+    "y": 754,
     "description": "",
     "mapNumber": 25,
     "imageX": 2568,
-    "imageY": 754,
+    "imageY": 4236,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -330,11 +330,11 @@
     "region": "Земли Горячей Воды",
     "type": "горячие источники",
     "x": 4390,
-    "y": 3989,
+    "y": 1001,
     "description": "",
     "mapNumber": 26,
     "imageX": 4390,
-    "imageY": 1001,
+    "imageY": 3989,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -343,11 +343,11 @@
     "region": "Земли Горячей Воды",
     "type": "долина / природная зона",
     "x": 2744,
-    "y": 4188,
+    "y": 802,
     "description": "",
     "mapNumber": 27,
     "imageX": 2744,
-    "imageY": 802,
+    "imageY": 4188,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -356,11 +356,11 @@
     "region": "Отмель",
     "type": "подводные владения / опасная зона",
     "x": 1033,
-    "y": 1689,
+    "y": 3301,
     "description": "",
     "mapNumber": 28,
     "imageX": 1033,
-    "imageY": 3301,
+    "imageY": 1689,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
