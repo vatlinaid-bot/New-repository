@@ -7,74 +7,63 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    @font-face {
-      font-family: 'CinzelObojima';
-      src: url('assets/cinzel_bold.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-    }
-    html, body {
-      margin: 0; height: 100%; background: #1f241d;
-      font-family: Georgia, "Times New Roman", serif;
+    @font-face { font-family: "CinzelObojima"; src: url("assets/cinzel_bold.ttf") format("truetype"); font-weight: 700; font-style: normal; }
+html, body { margin: 0; height: 100%; background: #1f241d; font-family: Georgia, 'Times New Roman', serif;
     }
     #map { width: 100%; height: 100vh; background: #1f241d; }
     .leaflet-control-zoom { margin-top: 14px !important; margin-left: 14px !important; }
     .panel {
-      position: absolute; z-index: 1000; top: 14px; left: 96px; width: 315px;
+      position: absolute; z-index: 1000; top: 14px; left: 96px; width: 340px;
       max-height: calc(100vh - 36px); overflow: auto;
-      background: rgba(13, 42, 51, .88);
-      border: 2px solid rgba(246, 238, 214, .92); border-radius: 10px;
-      padding: 14px 16px; box-shadow: 0 6px 20px rgba(0,0,0,.38); color: #f6eed6;
+      background: rgba(248,239,214,.94);
+      border: 1px solid #7d6a3d; border-radius: 10px;
+      padding: 12px 14px; box-shadow: 0 4px 14px rgba(0,0,0,.35); color: #2f2a23;
     }
     .panel h1 {
-      font-size: 28px; letter-spacing: .03em; margin: 0 0 10px; text-transform: uppercase;
-      line-height: 1; border-bottom: 1px solid rgba(246, 238, 214, .8); padding-bottom: 7px;
-      font-family: 'CinzelObojima', Georgia, serif;
+      font-size: 18px; margin: 0 0 8px; line-height: 1.15;
+      color: #2f2a23; border-bottom: 1px solid #b5a67e; padding-bottom: 7px;
+      
     }
-    .filters label { display: flex; align-items: center; gap: 8px; font-size: 18px; margin: 8px 0; line-height: 1.1; }
+    .filters label { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 6px 0; line-height: 1.15; color: #2f2a23; }
     .filters input { transform: translateY(1px); }
     .region-dot {
-      display: inline-block; width: 18px; height: 18px; border-radius: 50%;
-      border: 2px solid rgba(246, 238, 214, .95); box-shadow: 0 1px 3px rgba(0,0,0,.45); flex: 0 0 auto;
+      display: inline-block; width: 15px; height: 15px; border-radius: 50%;
+      border: 2px solid rgba(232, 221, 184, .98);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.32), 0 1px 2px rgba(0,0,0,.18); flex: 0 0 auto;
     }
-    .coord { font-size: 13px; margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(246, 238, 214, .55); }
-    .hint { color: rgba(246, 238, 214, .72); font-size: 12px; line-height: 1.35; }
+    .coord { font-size: 13px; margin-top: 10px; padding-top: 9px; border-top: 1px solid #b5a67e; color: #3f3729; }
+    .hint { color: #5e543c; font-size: 12px; line-height: 1.35; }
     .leaflet-popup-content { font-size: 14px; line-height: 1.35; }
     .number-marker {
-      width: 46px; height: 46px; border-radius: 50%; box-sizing: border-box;
-      background: var(--marker-color); border: 4px solid rgba(250, 244, 224, .96);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.42), 0 3px 8px rgba(0,0,0,.38);
-      color: #2f2a23; display: flex; align-items: center; justify-content: center;
-      font-family: 'CinzelObojima', Georgia, serif; font-size: 22px; font-weight: 700; line-height: 1;
-      text-shadow: 1px 1px 0 rgba(255,255,255,.8), -1px -1px 0 rgba(255,255,255,.75);
+      width: 28px; height: 28px; border-radius: 50%; box-sizing: border-box;
+      background: var(--marker-color);
+      border: 2px solid rgba(232, 221, 184, .98);
+      box-shadow: 0 0 0 1.5px rgba(255,255,255,.34), 0 2px 5px rgba(0,0,0,.28);
+      color: rgba(241, 230, 195, 1);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "CinzelObojima", Georgia, "Times New Roman", serif;
+      font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: -0.2px;
+      -webkit-text-stroke: 0.1px #111;
+      text-shadow:
+        1px 0 0 #111, -1px 0 0 #111, 0 1px 0 #111, 0 -1px 0 #111,
+        1px 1px 0 #111, -1px -1px 0 #111, 1px -1px 0 #111, -1px 1px 0 #111;
     }
-    .number-marker:hover { transform: scale(1.08); filter: brightness(1.08); }
+    .number-marker:hover { transform: scale(1.06); filter: brightness(1.04); }
 
     .keyboard-help {
       position: absolute; z-index: 1000; right: 14px; top: 72px;
-      background: rgba(13, 42, 51, .86);
-      border: 2px solid rgba(246, 238, 214, .9);
-      border-radius: 10px;
-      padding: 8px 10px;
-      color: #f6eed6;
-      font-size: 13px;
-      line-height: 1.35;
-      box-shadow: 0 4px 14px rgba(0,0,0,.32);
-      pointer-events: none;
+      background: rgba(248,239,214,.92);
+      border: 1px solid #7d6a3d; border-radius: 10px;
+      padding: 8px 10px; color: #3f3729; font-size: 13px; line-height: 1.35;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25); pointer-events: none;
     }
 
     .dm-status {
       position: absolute; z-index: 1002; right: 14px; top: 14px;
-      background: rgba(13, 42, 51, .86);
-      border: 2px solid rgba(246, 238, 214, .9);
-      border-radius: 10px;
-      padding: 7px 12px;
-      color: #f6eed6;
-      font-size: 13px;
-      line-height: 1.25;
-      box-shadow: 0 4px 14px rgba(0,0,0,.32);
-      display: none;
-      pointer-events: auto;
+      background: rgba(248,239,214,.94);
+      border: 1px solid #7d6a3d; border-radius: 10px;
+      padding: 7px 12px; color: #2f2a23; font-size: 13px; line-height: 1.25;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25); display: none; pointer-events: auto;
     }
     .swimmer-login {
       position: absolute; z-index: 1001;
@@ -124,7 +113,7 @@
     }
     .auth-card h2 {
       margin: 0 0 8px; font-size: 25px; line-height: 1;
-      text-transform: uppercase; font-family: 'CinzelObojima', Georgia, serif;
+      text-transform: uppercase; 
     }
     .auth-card p { margin: 0 0 12px; font-size: 14px; line-height: 1.4; color: rgba(246,238,214,.84); }
     .auth-card label { display: block; font-size: 13px; margin: 10px 0 5px; }
@@ -160,7 +149,7 @@
     }
     .logout-card h2 {
       margin: 0 0 8px; font-size: 24px; line-height: 1;
-      text-transform: uppercase; font-family: 'CinzelObojima', Georgia, serif;
+      text-transform: uppercase; 
     }
     .logout-card p { margin: 0 0 14px; font-size: 14px; line-height: 1.4; color: rgba(246,238,214,.84); }
     .logout-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -175,23 +164,19 @@
     .admin-tools {
       position: absolute; z-index: 1002; right: 14px; top: 116px;
       width: 235px; box-sizing: border-box; display: none;
-      background: rgba(13, 42, 51, .88);
-      border: 2px solid rgba(246, 238, 214, .9);
-      border-radius: 10px;
-      padding: 10px;
-      color: #f6eed6;
-      font-size: 13px;
-      line-height: 1.35;
-      box-shadow: 0 4px 14px rgba(0,0,0,.32);
+      background: rgba(248,239,214,.94);
+      border: 1px solid #7d6a3d; border-radius: 10px;
+      padding: 10px; color: #2f2a23; font-size: 13px; line-height: 1.35;
+      box-shadow: 0 4px 14px rgba(0,0,0,.25);
     }
     .admin-tools h3 {
       margin: 0 0 8px; font-size: 15px; text-transform: uppercase;
-      font-family: 'CinzelObojima', Georgia, serif; letter-spacing: .02em;
+       color: #2f2a23;
     }
     .admin-tools button {
-      width: 100%; margin-top: 7px; border: 1px solid rgba(246,238,214,.55);
+      width: 100%; margin-top: 7px; border: 1px solid #9a8757;
       border-radius: 8px; padding: 8px 10px; cursor: pointer;
-      background: rgba(255,255,255,.08); color: #f6eed6; font-family: inherit; font-size: 13px;
+      background: rgba(255,255,255,.4); color: #2f2a23; font-family: inherit; font-size: 13px;
     }
     .admin-tools button.primary { background: #f0d58a; color: #2a241a; font-weight: 700; }
 
@@ -215,7 +200,7 @@
     }
     .add-point-card h2 {
       margin: 0 0 8px; font-size: 24px; line-height: 1;
-      text-transform: uppercase; font-family: 'CinzelObojima', Georgia, serif;
+      text-transform: uppercase; 
     }
     .add-point-card p { margin: 0 0 12px; font-size: 13px; line-height: 1.4; color: rgba(246,238,214,.84); }
     .add-point-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; }
@@ -376,11 +361,11 @@
     "region": "Дар Суритаси",
     "type": "ложа / фракционная база",
     "x": 2933,
-    "y": 581,
+    "y": 4409,
     "description": "",
     "mapNumber": 1,
     "imageX": 2933,
-    "imageY": 4409,
+    "imageY": 581,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -389,11 +374,11 @@
     "region": "Дар Суритаси",
     "type": "деревня",
     "x": 2599,
-    "y": 3258,
+    "y": 1732,
     "description": "",
     "mapNumber": 2,
     "imageX": 2599,
-    "imageY": 1732,
+    "imageY": 3258,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -402,11 +387,11 @@
     "region": "Дар Суритаси",
     "type": "деревня",
     "x": 2487,
-    "y": 2415,
+    "y": 2575,
     "description": "",
     "mapNumber": 3,
     "imageX": 2487,
-    "imageY": 2575,
+    "imageY": 2415,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -415,11 +400,11 @@
     "region": "Дар Суритаси",
     "type": "храм / руины",
     "x": 3001,
-    "y": 1296,
+    "y": 3694,
     "description": "",
     "mapNumber": 4,
     "imageX": 3001,
-    "imageY": 3694,
+    "imageY": 1296,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -428,11 +413,11 @@
     "region": "Дар Суритаси",
     "type": "прибрежный городок / берег",
     "x": 1807,
-    "y": 1448,
+    "y": 3542,
     "description": "",
     "mapNumber": 5,
     "imageX": 1807,
-    "imageY": 3542,
+    "imageY": 1448,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -441,11 +426,11 @@
     "region": "Дар Суритаси",
     "type": "город духов / поселение",
     "x": 2511,
-    "y": 3544,
+    "y": 1446,
     "description": "",
     "mapNumber": 6,
     "imageX": 2511,
-    "imageY": 1446,
+    "imageY": 3544,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -454,11 +439,11 @@
     "region": "Дар Суритаси",
     "type": "школа мечников",
     "x": 1375,
-    "y": 3488,
+    "y": 1502,
     "description": "",
     "mapNumber": 7,
     "imageX": 1375,
-    "imageY": 1502,
+    "imageY": 3488,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -467,11 +452,11 @@
     "region": "Дар Суритаси",
     "type": "город / транспортный узел",
     "x": 3124,
-    "y": 655,
+    "y": 4335,
     "description": "",
     "mapNumber": 8,
     "imageX": 3124,
-    "imageY": 4335,
+    "imageY": 655,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -480,11 +465,11 @@
     "region": "Штормовые Поля",
     "type": "ковен / опасная зона",
     "x": 3985,
-    "y": 1860,
+    "y": 3130,
     "description": "",
     "mapNumber": 9,
     "imageX": 3985,
-    "imageY": 3130,
+    "imageY": 1860,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -493,11 +478,11 @@
     "region": "Штормовые Поля",
     "type": "лес / опасная зона",
     "x": 3564,
-    "y": 2395,
+    "y": 2595,
     "description": "",
     "mapNumber": 10,
     "imageX": 3564,
-    "imageY": 2595,
+    "imageY": 2395,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -506,11 +491,11 @@
     "region": "Прибрежное Нагорье",
     "type": "штаб / организация",
     "x": 5093,
-    "y": 1004,
+    "y": 3986,
     "description": "",
     "mapNumber": 11,
     "imageX": 5093,
-    "imageY": 3986,
+    "imageY": 1004,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -519,11 +504,11 @@
     "region": "Прибрежное Нагорье",
     "type": "город / водопад",
     "x": 4607,
-    "y": 1626,
+    "y": 3364,
     "description": "",
     "mapNumber": 12,
     "imageX": 4607,
-    "imageY": 3364,
+    "imageY": 1626,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -532,11 +517,11 @@
     "region": "Прибрежное Нагорье",
     "type": "аэродром / руины",
     "x": 5041,
-    "y": 1794,
+    "y": 3196,
     "description": "",
     "mapNumber": 13,
     "imageX": 5041,
-    "imageY": 3196,
+    "imageY": 1794,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -545,11 +530,11 @@
     "region": "Тихая Заводь",
     "type": "побережье / Порча",
     "x": 5888,
-    "y": 1652,
+    "y": 3338,
     "description": "",
     "mapNumber": 14,
     "imageX": 5888,
-    "imageY": 3338,
+    "imageY": 1652,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -558,11 +543,11 @@
     "region": "Тихая Заводь",
     "type": "магазин / заведение",
     "x": 5000,
-    "y": 2992,
+    "y": 1998,
     "description": "",
     "mapNumber": 15,
     "imageX": 5000,
-    "imageY": 1998,
+    "imageY": 2992,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -571,11 +556,11 @@
     "region": "Тихая Заводь",
     "type": "раменная / заведение",
     "x": 5016,
-    "y": 2467,
+    "y": 2523,
     "description": "",
     "mapNumber": 16,
     "imageX": 5016,
-    "imageY": 2523,
+    "imageY": 2467,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -584,11 +569,11 @@
     "region": "Тихая Заводь",
     "type": "деревня",
     "x": 6264,
-    "y": 3159,
+    "y": 1831,
     "description": "",
     "mapNumber": 17,
     "imageX": 6264,
-    "imageY": 1831,
+    "imageY": 3159,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -597,11 +582,11 @@
     "region": "Тихая Заводь",
     "type": "поселение / локация",
     "x": 4431,
-    "y": 2713,
+    "y": 2277,
     "description": "",
     "mapNumber": 18,
     "imageX": 4431,
-    "imageY": 2277,
+    "imageY": 2713,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -610,11 +595,11 @@
     "region": "Тихая Заводь",
     "type": "школа мечников",
     "x": 5282,
-    "y": 3381,
+    "y": 1609,
     "description": "",
     "mapNumber": 19,
     "imageX": 5282,
-    "imageY": 1609,
+    "imageY": 3381,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -623,11 +608,11 @@
     "region": "Гора Арбора",
     "type": "лестницы / горная тропа",
     "x": 3387,
-    "y": 3545,
+    "y": 1445,
     "description": "",
     "mapNumber": 20,
     "imageX": 3387,
-    "imageY": 1445,
+    "imageY": 3545,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -636,11 +621,11 @@
     "region": "Гора Арбора",
     "type": "природная локация",
     "x": 3596,
-    "y": 4259,
+    "y": 731,
     "description": "",
     "mapNumber": 21,
     "imageX": 3596,
-    "imageY": 731,
+    "imageY": 4259,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -649,11 +634,11 @@
     "region": "Гора Арбора",
     "type": "промышленная локация",
     "x": 4100,
-    "y": 3752,
+    "y": 1238,
     "description": "",
     "mapNumber": 22,
     "imageX": 4100,
-    "imageY": 1238,
+    "imageY": 3752,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -662,11 +647,11 @@
     "region": "Гора Арбора",
     "type": "школа мечников",
     "x": 3884,
-    "y": 3908,
+    "y": 1082,
     "description": "",
     "mapNumber": 23,
     "imageX": 3884,
-    "imageY": 1082,
+    "imageY": 3908,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -675,11 +660,11 @@
     "region": "Земли Горячей Воды",
     "type": "чайный дом / заведение",
     "x": 4464,
-    "y": 4113,
+    "y": 877,
     "description": "",
     "mapNumber": 24,
     "imageX": 4464,
-    "imageY": 877,
+    "imageY": 4113,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -688,11 +673,11 @@
     "region": "Земли Горячей Воды",
     "type": "ложа / фракционная база",
     "x": 2568,
-    "y": 4236,
+    "y": 754,
     "description": "",
     "mapNumber": 25,
     "imageX": 2568,
-    "imageY": 754,
+    "imageY": 4236,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -701,11 +686,11 @@
     "region": "Земли Горячей Воды",
     "type": "горячие источники",
     "x": 4390,
-    "y": 3989,
+    "y": 1001,
     "description": "",
     "mapNumber": 26,
     "imageX": 4390,
-    "imageY": 1001,
+    "imageY": 3989,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -714,11 +699,11 @@
     "region": "Земли Горячей Воды",
     "type": "долина / природная зона",
     "x": 2744,
-    "y": 4188,
+    "y": 802,
     "description": "",
     "mapNumber": 27,
     "imageX": 2744,
-    "imageY": 802,
+    "imageY": 4188,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -727,11 +712,11 @@
     "region": "Отмель",
     "type": "подводные владения / опасная зона",
     "x": 1033,
-    "y": 1689,
+    "y": 3301,
     "description": "",
     "mapNumber": 28,
     "imageX": 1033,
-    "imageY": 3301,
+    "imageY": 1689,
     "alignment": "Corrected to the visible numbered circle center on the source map."
   },
   {
@@ -764,12 +749,12 @@
   }
 ];
     const regionColors = {
-  "Дар Суритаси": "#67C5B8",
+  "Дар Суритаси": "#7FC7C6",
   "Земли Горячей Воды": "#E58C63",
   "Гора Арбора": "#6EA8E0",
   "Штормовые Поля": "#8FBE5A",
   "Тихая Заводь": "#A98ADD",
-  "Прибрежное Нагорье": "#E6B64A",
+  "Прибрежное Нагорье": "#D9B65D",
   "Отмель": "#F28C7B",
   "Остров / межрегиональное": "#8A8170"
 };
@@ -806,7 +791,7 @@
       return L.divIcon({
         className: '',
         html: `<div class="number-marker" style="--marker-color:${color}">${escapeHtml(location.mapNumber || '')}</div>`,
-        iconSize: [46, 46], iconAnchor: [23, 23], popupAnchor: [0, -24]
+        iconSize: [28, 28], iconAnchor: [14, 14], popupAnchor: [0, -16]
       });
     }
 
@@ -881,12 +866,12 @@
       coord.textContent = `X: ${x}, Y: ${yFromTop}`;
     });
 
-
     // Simple local master login. Change these values in index.html if you need new credentials.
     const DM_LOGIN = 'Witch';
     const DM_PASSWORD = 'astral666';
     const DM_STORAGE_KEY = 'obojima_dm_authenticated';
     let isDMMode = localStorage.getItem(DM_STORAGE_KEY) === '1';
+    let deleteMode = false;
 
     const swimmerLogin = document.getElementById('swimmerLogin');
     const authModal = document.getElementById('authModal');
@@ -912,9 +897,10 @@
 
     function updateDMUi() {
       adminTools.style.display = isDMMode ? 'block' : 'none';
-      swimmerLogin.title = 'Вход как админ';
-      swimmerLogin.setAttribute('aria-label', 'Вход как админ');
+      swimmerLogin.title = isDMMode ? 'Выйти из админки' : 'Вход как админ';
+      swimmerLogin.setAttribute('aria-label', isDMMode ? 'Выйти из админки' : 'Вход как админ');
       swimmerLogin.style.display = 'block';
+      if (!isDMMode) setDeleteMode(false);
     }
 
     function openAuthModal() {
@@ -945,7 +931,10 @@
     function logoutAdmin() {
       isDMMode = false;
       localStorage.removeItem(DM_STORAGE_KEY);
-  
+      closeLogoutModal();
+      updateDMUi();
+    }
+
     function nextMapNumber() {
       return Math.max(0, ...locations.map(l => Number(l.mapNumber) || 0)) + 1;
     }
@@ -985,14 +974,13 @@
     }
 
     function saveAddedLocations() {
-      const manual = locations.filter(l => l.addedByAdmin === true);
+      const builtInNumbers = new Set(locations.filter(l => l.addedByAdmin !== true).map(l => Number(l.mapNumber)));
+      const manual = locations.filter(l => l.addedByAdmin === true && !builtInNumbers.has(Number(l.mapNumber)));
       localStorage.setItem(ADDED_LOCATIONS_KEY, JSON.stringify(manual));
     }
 
-    let deleteMode = false;
-
     function setDeleteMode(value) {
-      deleteMode = value;
+      deleteMode = Boolean(value);
       deletePointButton.classList.toggle('active-delete', deleteMode);
       deletePointButton.textContent = deleteMode ? 'Удаление включено: нажми метку' : 'Удалить метку';
       coord.textContent = deleteMode ? 'Режим удаления: нажми на метку, которую нужно удалить.' : 'X/Y: —';
@@ -1001,7 +989,7 @@
     function removeLocation(location, marker) {
       const index = locations.indexOf(location);
       if (index >= 0) locations.splice(index, 1);
-      map.removeLayer(marker);
+      marker.remove();
       saveAddedLocations();
       setDeleteMode(false);
       coord.textContent = `Удалена метка ${location.mapNumber || ''}: ${location.name || ''}`;
@@ -1016,70 +1004,9 @@
       URL.revokeObjectURL(a.href);
     }
 
-    addPointButton.addEventListener('click', openAddPointModal);
-    deletePointButton.addEventListener('click', function() { if (isDMMode) setDeleteMode(!deleteMode); });
-    exportPointsButton.addEventListener('click', exportAllLocations);
-    addPointCancel.addEventListener('click', closeAddPointModal);
-    pointColor.addEventListener('change', updateColorPreview);
-addPointForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const form = new FormData(addPointForm);
-      const x = Number(form.get('x'));
-      const y = Number(form.get('y'));
-      const mapNumber = Number(form.get('mapNumber'));
-
-      if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(mapNumber)) {
-        addPointError.textContent = 'Проверь координаты X/Y и номер кружка.';
-        return;
-      }
-
-      const newLocation = {
-        name: String(form.get('name') || '').trim(),
-        name_en: String(form.get('name_en') || '').trim(),
-        region: String(form.get('region') || '').trim() || 'Без региона',
-        type: String(form.get('type') || '').trim(),
-        x,
-        y,
-        description: String(form.get('description') || '').trim(),
-        mapNumber,
-        imageX: x,
-        imageY: mapHeight - y,
-        alignment: String(form.get('alignment') || '').trim() || 'Added manually in admin mode.',
-        color: String(form.get('color') || '').trim(),
-        addedByAdmin: true
-      };
-
-      if (!newLocation.name) {
-        addPointError.textContent = 'Название обязательно.';
-        return;
-      }
-
-      locations.push(newLocation);
-      addLocationMarker(newLocation);
-      saveAddedLocations();
-      addPointError.textContent = `Добавлена точка ${newLocation.mapNumber}. Окно останется открытым, пока не нажата «Отмена».`;
-      addPointForm.reset();
-      document.getElementById('pointMapNumber').value = nextMapNumber();
-      document.getElementById('pointAlignment').value = 'Added manually in admin mode.';
-      if (lastClickedPoint) {
-        document.getElementById('pointX').value = lastClickedPoint.x;
-        document.getElementById('pointY').value = lastClickedPoint.y;
-      }
-      updateColorPreview();
-      coord.textContent = `Добавлена точка ${newLocation.mapNumber}: X: ${newLocation.x}, Y: ${newLocation.y}`;
-    });
-
-
-    updateDMUi();
-      closeLogoutModal();
-    }
-
     swimmerLogin.addEventListener('click', function() {
-      if (isDMMode) {
-        openLogoutModal();
-        return;
-      }
-      openAuthModal();
+      if (isDMMode) openLogoutModal();
+      else openAuthModal();
     });
 
     authCancel.addEventListener('click', closeAuthModal);
@@ -1100,133 +1027,8 @@ addPointForm.addEventListener('submit', function(event) {
       if (login === DM_LOGIN && password === DM_PASSWORD) {
         isDMMode = true;
         localStorage.setItem(DM_STORAGE_KEY, '1');
-    
-    function nextMapNumber() {
-      return Math.max(0, ...locations.map(l => Number(l.mapNumber) || 0)) + 1;
-    }
-
-    function refreshRegionList() {
-      const allRegions = [...new Set(locations.map(l => l.region || 'Без региона'))].sort();
-      regionList.innerHTML = allRegions.map(r => `<option value="${escapeHtml(r)}"></option>`).join('');
-    }
-
-    function updateColorPreview() {
-      const color = pointColor.value || '#8A8170';
-      pointColorPreview.style.background = color;
-    }
-
-    function openAddPointModal() {
-      if (!isDMMode) return;
-      setDeleteMode(false);
-      refreshRegionList();
-      addPointError.textContent = '';
-      addPointForm.reset();
-      document.getElementById('pointMapNumber').value = nextMapNumber();
-      document.getElementById('pointAlignment').value = 'Added manually in admin mode.';
-      if (lastClickedPoint) {
-        document.getElementById('pointX').value = lastClickedPoint.x;
-        document.getElementById('pointY').value = lastClickedPoint.y;
-      }
-      updateColorPreview();
-      addPointModal.classList.add('open');
-      addPointModal.setAttribute('aria-hidden', 'false');
-      setTimeout(() => document.getElementById('pointName').focus(), 30);
-    }
-
-    function closeAddPointModal() {
-      addPointModal.classList.remove('open');
-      addPointModal.setAttribute('aria-hidden', 'true');
-      addPointError.textContent = '';
-    }
-
-    function saveAddedLocations() {
-      const manual = locations.filter(l => l.addedByAdmin === true);
-      localStorage.setItem(ADDED_LOCATIONS_KEY, JSON.stringify(manual));
-    }
-
-    let deleteMode = false;
-
-    function setDeleteMode(value) {
-      deleteMode = value;
-      deletePointButton.classList.toggle('active-delete', deleteMode);
-      deletePointButton.textContent = deleteMode ? 'Удаление включено: нажми метку' : 'Удалить метку';
-      coord.textContent = deleteMode ? 'Режим удаления: нажми на метку, которую нужно удалить.' : 'X/Y: —';
-    }
-
-    function removeLocation(location, marker) {
-      const index = locations.indexOf(location);
-      if (index >= 0) locations.splice(index, 1);
-      map.removeLayer(marker);
-      saveAddedLocations();
-      setDeleteMode(false);
-      coord.textContent = `Удалена метка ${location.mapNumber || ''}: ${location.name || ''}`;
-    }
-
-    function exportAllLocations() {
-      const blob = new Blob([JSON.stringify(locations, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'obojima_locations_export.json';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
-    addPointButton.addEventListener('click', openAddPointModal);
-    deletePointButton.addEventListener('click', function() { if (isDMMode) setDeleteMode(!deleteMode); });
-    exportPointsButton.addEventListener('click', exportAllLocations);
-    addPointCancel.addEventListener('click', closeAddPointModal);
-    pointColor.addEventListener('change', updateColorPreview);
-addPointForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const form = new FormData(addPointForm);
-      const x = Number(form.get('x'));
-      const y = Number(form.get('y'));
-      const mapNumber = Number(form.get('mapNumber'));
-
-      if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(mapNumber)) {
-        addPointError.textContent = 'Проверь координаты X/Y и номер кружка.';
-        return;
-      }
-
-      const newLocation = {
-        name: String(form.get('name') || '').trim(),
-        name_en: String(form.get('name_en') || '').trim(),
-        region: String(form.get('region') || '').trim() || 'Без региона',
-        type: String(form.get('type') || '').trim(),
-        x,
-        y,
-        description: String(form.get('description') || '').trim(),
-        mapNumber,
-        imageX: x,
-        imageY: mapHeight - y,
-        alignment: String(form.get('alignment') || '').trim() || 'Added manually in admin mode.',
-        color: String(form.get('color') || '').trim(),
-        addedByAdmin: true
-      };
-
-      if (!newLocation.name) {
-        addPointError.textContent = 'Название обязательно.';
-        return;
-      }
-
-      locations.push(newLocation);
-      addLocationMarker(newLocation);
-      saveAddedLocations();
-      addPointError.textContent = `Добавлена точка ${newLocation.mapNumber}. Окно останется открытым, пока не нажата «Отмена».`;
-      addPointForm.reset();
-      document.getElementById('pointMapNumber').value = nextMapNumber();
-      document.getElementById('pointAlignment').value = 'Added manually in admin mode.';
-      if (lastClickedPoint) {
-        document.getElementById('pointX').value = lastClickedPoint.x;
-        document.getElementById('pointY').value = lastClickedPoint.y;
-      }
-      updateColorPreview();
-      coord.textContent = `Добавлена точка ${newLocation.mapNumber}: X: ${newLocation.x}, Y: ${newLocation.y}`;
-    });
-
-
-    updateDMUi();
         closeAuthModal();
+        updateDMUi();
       } else {
         authError.textContent = 'Неверный логин или пароль.';
         authPasswordInput.focus();
@@ -1234,83 +1036,13 @@ addPointForm.addEventListener('submit', function(event) {
       }
     });
 
-
-    function nextMapNumber() {
-      return Math.max(0, ...locations.map(l => Number(l.mapNumber) || 0)) + 1;
-    }
-
-    function refreshRegionList() {
-      const allRegions = [...new Set(locations.map(l => l.region || 'Без региона'))].sort();
-      regionList.innerHTML = allRegions.map(r => `<option value="${escapeHtml(r)}"></option>`).join('');
-    }
-
-    function updateColorPreview() {
-      const color = pointColor.value || '#8A8170';
-      pointColorPreview.style.background = color;
-    }
-
-    function openAddPointModal() {
-      if (!isDMMode) return;
-      setDeleteMode(false);
-      refreshRegionList();
-      addPointError.textContent = '';
-      addPointForm.reset();
-      document.getElementById('pointMapNumber').value = nextMapNumber();
-      document.getElementById('pointAlignment').value = 'Added manually in admin mode.';
-      if (lastClickedPoint) {
-        document.getElementById('pointX').value = lastClickedPoint.x;
-        document.getElementById('pointY').value = lastClickedPoint.y;
-      }
-      updateColorPreview();
-      addPointModal.classList.add('open');
-      addPointModal.setAttribute('aria-hidden', 'false');
-      setTimeout(() => document.getElementById('pointName').focus(), 30);
-    }
-
-    function closeAddPointModal() {
-      addPointModal.classList.remove('open');
-      addPointModal.setAttribute('aria-hidden', 'true');
-      addPointError.textContent = '';
-    }
-
-    function saveAddedLocations() {
-      const manual = locations.filter(l => l.addedByAdmin === true);
-      localStorage.setItem(ADDED_LOCATIONS_KEY, JSON.stringify(manual));
-    }
-
-    let deleteMode = false;
-
-    function setDeleteMode(value) {
-      deleteMode = value;
-      deletePointButton.classList.toggle('active-delete', deleteMode);
-      deletePointButton.textContent = deleteMode ? 'Удаление включено: нажми метку' : 'Удалить метку';
-      coord.textContent = deleteMode ? 'Режим удаления: нажми на метку, которую нужно удалить.' : 'X/Y: —';
-    }
-
-    function removeLocation(location, marker) {
-      const index = locations.indexOf(location);
-      if (index >= 0) locations.splice(index, 1);
-      map.removeLayer(marker);
-      saveAddedLocations();
-      setDeleteMode(false);
-      coord.textContent = `Удалена метка ${location.mapNumber || ''}: ${location.name || ''}`;
-    }
-
-    function exportAllLocations() {
-      const blob = new Blob([JSON.stringify(locations, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'obojima_locations_export.json';
-      a.click();
-      URL.revokeObjectURL(a.href);
-    }
-
     addPointButton.addEventListener('click', openAddPointModal);
     deletePointButton.addEventListener('click', function() { if (isDMMode) setDeleteMode(!deleteMode); });
     exportPointsButton.addEventListener('click', exportAllLocations);
     addPointCancel.addEventListener('click', closeAddPointModal);
     pointColor.addEventListener('change', updateColorPreview);
-addPointForm.addEventListener('submit', function(event) {
+
+    addPointForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const form = new FormData(addPointForm);
       const x = Number(form.get('x'));
@@ -1358,9 +1090,7 @@ addPointForm.addEventListener('submit', function(event) {
       coord.textContent = `Добавлена точка ${newLocation.mapNumber}: X: ${newLocation.x}, Y: ${newLocation.y}`;
     });
 
-
     updateDMUi();
-
 
     // Keyboard navigation preserved: WASD / arrows + Q/E for zoom
     document.addEventListener('keydown', function(event) {
